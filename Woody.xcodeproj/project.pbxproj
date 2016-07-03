@@ -10,6 +10,8 @@
 		0BAF4F781D2933DA00EC23D0 /* Woody.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BAF4F771D2933DA00EC23D0 /* Woody.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BAF4F7F1D2933DA00EC23D0 /* Woody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAF4F741D2933DA00EC23D0 /* Woody.framework */; };
 		0BAF4F841D2933DA00EC23D0 /* WoodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F831D2933DA00EC23D0 /* WoodyTests.swift */; };
+		0BAF4F8F1D2935F500EC23D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F8E1D2935F500EC23D0 /* Logger.swift */; };
+		0BAF4F911D293BA700EC23D0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F901D293BA700EC23D0 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		0BAF4F7E1D2933DA00EC23D0 /* WoodyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoodyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAF4F831D2933DA00EC23D0 /* WoodyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodyTests.swift; sourceTree = "<group>"; };
 		0BAF4F851D2933DA00EC23D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BAF4F8E1D2935F500EC23D0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0BAF4F901D293BA700EC23D0 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			children = (
 				0BAF4F771D2933DA00EC23D0 /* Woody.h */,
 				0BAF4F791D2933DA00EC23D0 /* Info.plist */,
+				0BAF4F8E1D2935F500EC23D0 /* Logger.swift */,
+				0BAF4F901D293BA700EC23D0 /* Utilities.swift */,
 			);
 			path = Woody;
 			sourceTree = "<group>";
@@ -194,6 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BAF4F911D293BA700EC23D0 /* Utilities.swift in Sources */,
+				0BAF4F8F1D2935F500EC23D0 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +318,7 @@
 		0BAF4F891D2933DA00EC23D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -321,12 +330,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.Woody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		0BAF4F8A1D2933DA00EC23D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
