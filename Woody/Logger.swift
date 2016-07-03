@@ -32,7 +32,7 @@ public struct Logger {
   
   public func log(logable: Logable) {
     dispatch_async(configuration.loggingQueue) {
-      let logging = self.loggingPrefix + logable.loggingRepresentation + self.loggingSuffi
+      let logging = self.loggingPrefix + logable.loggingRepresentation + self.loggingSuffix
       guard let loggingData = logging.dataUsingEncoding(NSUTF8StringEncoding) else {
         return
       }
