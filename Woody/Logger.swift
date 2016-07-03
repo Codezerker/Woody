@@ -8,19 +8,6 @@
 
 import Foundation
 
-public protocol Logable {
-  
-  var loggingRepresentation: String { get }
-}
-
-extension String: Logable {
-  
-  public var loggingRepresentation: String {
-    return self
-  }
-}
-
-
 public struct Logger {
  
   public struct Configuration {
@@ -45,7 +32,8 @@ public struct Logger {
   
   public func log(logable: Logable) {
     dispatch_async(configuration.loggingQueue) {
-      guard let loggingData = logable.loggingRepresentation.dataUsingEncoding(NSUTF8StringEncoding) else {
+      let logging = self.loggingPrefix + logable.loggingRepresentation + self.loggingSuffi
+      guard let loggingData = logging.dataUsingEncoding(NSUTF8StringEncoding) else {
         return
       }
       
@@ -53,5 +41,16 @@ public struct Logger {
       self.fileHandle.writeData(loggingData)
       self.fileHandle.synchronizeFile()
     }
+  }
+}
+
+private extension Logger {
+  
+  var loggingPrefix: String {
+    return "[Woody] (\(NSDate())): "
+  }
+  
+  var loggingSuffix: String {
+    return "\n"
   }
 }
