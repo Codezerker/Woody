@@ -46,7 +46,6 @@ public struct Logger {
   
   public func clear() {
     dispatch_async(configuration.loggingQueue) {
-      self.fileHandle.seekToFileOffset(0)
       FileUtility.clearLog(self.configuration.destinationURL!)
     }
   }

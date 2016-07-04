@@ -23,6 +23,11 @@ class WoodyTests: XCTestCase {
     logger?.clear()
   }
   
+  override func tearDown() {
+    super.tearDown()
+    logger?.clear()
+  }
+  
   func testInitialization() {
     XCTAssertNotNil(logger)
   }
@@ -59,6 +64,22 @@ class WoodyTests: XCTestCase {
     waitForExpectationsWithTimeout(5, handler: nil)
   }
   
+  func testClearAndLog() {
+    let example = Example(value1: 555, value2: 999)
+    logger?.log(example)
+    
+    let expectation = expectationWithDescription("read")
+    logger?.read { result in
+      let expectedLog =
+          "===== [Woody] <timestamp> =====" + "\n" +
+          "Example -> value1 : 555" + "\n" +
+          "        -> value2 : 999" + "\n" +
+          "\n"
+      XCTAssertEqual(result, expectedLog)
+      expectation.fulfill()
+    }
+    waitForExpectationsWithTimeout(5, handler: nil)
+  }
 }
 
 
