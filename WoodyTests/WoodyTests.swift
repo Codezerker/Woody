@@ -2,7 +2,7 @@
 //  WoodyTests.swift
 //  WoodyTests
 //
-//  Created by Yan Li on 7/3/16.
+//  Created by Yan Li on 7/4/16.
 //  Copyright © 2016 Codezerker. All rights reserved.
 //
 
@@ -10,27 +10,73 @@ import XCTest
 @testable import Woody
 
 class WoodyTests: XCTestCase {
+  
+  var logger: Logger?
+  
+  override func setUp() {
+    super.setUp()
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var configuration = Logger.Configuration()
+    configuration.timestampProvider = Timestamper()
+    
+    logger = Logger(configuration: configuration)
+    logger?.clear()
+  }
+  
+  func testInitialization() {
+    XCTAssertNotNil(logger)
+  }
+  
+  func testLogging() {
+    let examples = [
+      Example(value1: 1, value2: 2),
+      Example(value1: 3, value2: 4),
+      Example(value1: 5, value2: 6),
+    ]
+    
+    for example in examples {
+      logger?.log(example)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    let expectation = expectationWithDescription("read")
+    logger?.read { result in
+      let expectedLog =
+          "===== [Woody] <timestamp> =====" + "\n" +
+          "Example -> value1 : 1" + "\n" +
+          "        -> value2 : 2" + "\n" +
+          "\n" +
+          "===== [Woody] <timestamp> =====" + "\n" +
+          "Example -> value1 : 3" + "\n" +
+          "        -> value2 : 4" + "\n" +
+          "\n" +
+          "===== [Woody] <timestamp> =====" + "\n" +
+          "Example -> value1 : 5" + "\n" +
+          "        -> value2 : 6" + "\n" +
+          "\n"
+      XCTAssertEqual(result, expectedLog)
+      expectation.fulfill()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+    waitForExpectationsWithTimeout(5, handler: nil)
+  }
+  
+}
+
+
+struct Timestamper: TimestampProvider {
+  
+  func timestampForDate(date: NSDate) -> String {
+    return "<timestamp>"
+  }
+}
+
+
+struct Example: Logable {
+  
+  let value1: Int
+  let value2: Int
+  
+  var loggingRepresentation: String {
+    return "Example -> value1 : \(value1)" + "\n" +
+           "        -> value2 : \(value2)"
+  }
 }

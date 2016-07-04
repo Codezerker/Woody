@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		0BAF4F781D2933DA00EC23D0 /* Woody.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BAF4F771D2933DA00EC23D0 /* Woody.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0BAF4F7F1D2933DA00EC23D0 /* Woody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAF4F741D2933DA00EC23D0 /* Woody.framework */; };
-		0BAF4F841D2933DA00EC23D0 /* WoodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F831D2933DA00EC23D0 /* WoodyTests.swift */; };
 		0BAF4F8F1D2935F500EC23D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F8E1D2935F500EC23D0 /* Logger.swift */; };
 		0BAF4F911D293BA700EC23D0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F901D293BA700EC23D0 /* Utilities.swift */; };
-		0BAF4F931D29484300EC23D0 /* Logable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F921D29484300EC23D0 /* Logable.swift */; };
+		0BAF4F931D29484300EC23D0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F921D29484300EC23D0 /* Protocols.swift */; };
+		0BAF4FA11D2A9AC600EC23D0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F921D29484300EC23D0 /* Protocols.swift */; };
+		0BAF4FA21D2A9AC600EC23D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F8E1D2935F500EC23D0 /* Logger.swift */; };
+		0BAF4FA31D2A9AC600EC23D0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4F901D293BA700EC23D0 /* Utilities.swift */; };
+		0BAF4FA41D2A9AD200EC23D0 /* Woody.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BAF4F771D2933DA00EC23D0 /* Woody.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BAF4FBB1D2A9DEA00EC23D0 /* WoodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF4FBA1D2A9DEA00EC23D0 /* WoodyTests.swift */; };
+		0BAF4FBD1D2A9DEA00EC23D0 /* Woody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAF4F991D2A9A5E00EC23D0 /* Woody.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0BAF4F801D2933DA00EC23D0 /* PBXContainerItemProxy */ = {
+		0BAF4FBE1D2A9DEA00EC23D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0BAF4F6B1D2933DA00EC23D0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0BAF4F731D2933DA00EC23D0;
-			remoteInfo = Woody;
+			remoteGlobalIDString = 0BAF4F981D2A9A5E00EC23D0;
+			remoteInfo = "Woody-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -29,12 +33,13 @@
 		0BAF4F741D2933DA00EC23D0 /* Woody.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Woody.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAF4F771D2933DA00EC23D0 /* Woody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Woody.h; sourceTree = "<group>"; };
 		0BAF4F791D2933DA00EC23D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0BAF4F7E1D2933DA00EC23D0 /* WoodyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoodyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BAF4F831D2933DA00EC23D0 /* WoodyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodyTests.swift; sourceTree = "<group>"; };
-		0BAF4F851D2933DA00EC23D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BAF4F8E1D2935F500EC23D0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0BAF4F901D293BA700EC23D0 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		0BAF4F921D29484300EC23D0 /* Logable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logable.swift; sourceTree = "<group>"; };
+		0BAF4F921D29484300EC23D0 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		0BAF4F991D2A9A5E00EC23D0 /* Woody.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Woody.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BAF4FB81D2A9DE900EC23D0 /* WoodyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoodyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BAF4FBA1D2A9DEA00EC23D0 /* WoodyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodyTests.swift; sourceTree = "<group>"; };
+		0BAF4FBC1D2A9DEA00EC23D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,11 +50,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BAF4F7B1D2933DA00EC23D0 /* Frameworks */ = {
+		0BAF4F951D2A9A5E00EC23D0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BAF4F7F1D2933DA00EC23D0 /* Woody.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAF4FB51D2A9DE900EC23D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAF4FBD1D2A9DEA00EC23D0 /* Woody.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				0BAF4F761D2933DA00EC23D0 /* Woody */,
-				0BAF4F821D2933DA00EC23D0 /* WoodyTests */,
+				0BAF4FB91D2A9DEA00EC23D0 /* WoodyTests */,
 				0BAF4F751D2933DA00EC23D0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				0BAF4F741D2933DA00EC23D0 /* Woody.framework */,
-				0BAF4F7E1D2933DA00EC23D0 /* WoodyTests.xctest */,
+				0BAF4F991D2A9A5E00EC23D0 /* Woody.framework */,
+				0BAF4FB81D2A9DE900EC23D0 /* WoodyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,18 +92,18 @@
 			children = (
 				0BAF4F771D2933DA00EC23D0 /* Woody.h */,
 				0BAF4F791D2933DA00EC23D0 /* Info.plist */,
-				0BAF4F921D29484300EC23D0 /* Logable.swift */,
+				0BAF4F921D29484300EC23D0 /* Protocols.swift */,
 				0BAF4F8E1D2935F500EC23D0 /* Logger.swift */,
 				0BAF4F901D293BA700EC23D0 /* Utilities.swift */,
 			);
 			path = Woody;
 			sourceTree = "<group>";
 		};
-		0BAF4F821D2933DA00EC23D0 /* WoodyTests */ = {
+		0BAF4FB91D2A9DEA00EC23D0 /* WoodyTests */ = {
 			isa = PBXGroup;
 			children = (
-				0BAF4F831D2933DA00EC23D0 /* WoodyTests.swift */,
-				0BAF4F851D2933DA00EC23D0 /* Info.plist */,
+				0BAF4FBA1D2A9DEA00EC23D0 /* WoodyTests.swift */,
+				0BAF4FBC1D2A9DEA00EC23D0 /* Info.plist */,
 			);
 			path = WoodyTests;
 			sourceTree = "<group>";
@@ -106,12 +119,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0BAF4F961D2A9A5E00EC23D0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAF4FA41D2A9AD200EC23D0 /* Woody.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0BAF4F731D2933DA00EC23D0 /* Woody */ = {
+		0BAF4F731D2933DA00EC23D0 /* Woody-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BAF4F881D2933DA00EC23D0 /* Build configuration list for PBXNativeTarget "Woody" */;
+			buildConfigurationList = 0BAF4F881D2933DA00EC23D0 /* Build configuration list for PBXNativeTarget "Woody-iOS" */;
 			buildPhases = (
 				0BAF4F6F1D2933DA00EC23D0 /* Sources */,
 				0BAF4F701D2933DA00EC23D0 /* Frameworks */,
@@ -122,27 +143,45 @@
 			);
 			dependencies = (
 			);
-			name = Woody;
+			name = "Woody-iOS";
 			productName = Woody;
 			productReference = 0BAF4F741D2933DA00EC23D0 /* Woody.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0BAF4F7D1D2933DA00EC23D0 /* WoodyTests */ = {
+		0BAF4F981D2A9A5E00EC23D0 /* Woody-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BAF4F8B1D2933DA00EC23D0 /* Build configuration list for PBXNativeTarget "WoodyTests" */;
+			buildConfigurationList = 0BAF4F9E1D2A9A5E00EC23D0 /* Build configuration list for PBXNativeTarget "Woody-macOS" */;
 			buildPhases = (
-				0BAF4F7A1D2933DA00EC23D0 /* Sources */,
-				0BAF4F7B1D2933DA00EC23D0 /* Frameworks */,
-				0BAF4F7C1D2933DA00EC23D0 /* Resources */,
+				0BAF4F941D2A9A5E00EC23D0 /* Sources */,
+				0BAF4F951D2A9A5E00EC23D0 /* Frameworks */,
+				0BAF4F961D2A9A5E00EC23D0 /* Headers */,
+				0BAF4F971D2A9A5E00EC23D0 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0BAF4F811D2933DA00EC23D0 /* PBXTargetDependency */,
+			);
+			name = "Woody-macOS";
+			productName = "Woody-macOS";
+			productReference = 0BAF4F991D2A9A5E00EC23D0 /* Woody.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0BAF4FB71D2A9DE900EC23D0 /* WoodyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BAF4FC01D2A9DEA00EC23D0 /* Build configuration list for PBXNativeTarget "WoodyTests" */;
+			buildPhases = (
+				0BAF4FB41D2A9DE900EC23D0 /* Sources */,
+				0BAF4FB51D2A9DE900EC23D0 /* Frameworks */,
+				0BAF4FB61D2A9DE900EC23D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0BAF4FBF1D2A9DEA00EC23D0 /* PBXTargetDependency */,
 			);
 			name = WoodyTests;
 			productName = WoodyTests;
-			productReference = 0BAF4F7E1D2933DA00EC23D0 /* WoodyTests.xctest */;
+			productReference = 0BAF4FB81D2A9DE900EC23D0 /* WoodyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -158,7 +197,10 @@
 					0BAF4F731D2933DA00EC23D0 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
-					0BAF4F7D1D2933DA00EC23D0 = {
+					0BAF4F981D2A9A5E00EC23D0 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					0BAF4FB71D2A9DE900EC23D0 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -175,8 +217,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0BAF4F731D2933DA00EC23D0 /* Woody */,
-				0BAF4F7D1D2933DA00EC23D0 /* WoodyTests */,
+				0BAF4F731D2933DA00EC23D0 /* Woody-iOS */,
+				0BAF4F981D2A9A5E00EC23D0 /* Woody-macOS */,
+				0BAF4FB71D2A9DE900EC23D0 /* WoodyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -189,7 +232,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BAF4F7C1D2933DA00EC23D0 /* Resources */ = {
+		0BAF4F971D2A9A5E00EC23D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAF4FB61D2A9DE900EC23D0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -203,27 +253,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BAF4F931D29484300EC23D0 /* Logable.swift in Sources */,
+				0BAF4F931D29484300EC23D0 /* Protocols.swift in Sources */,
 				0BAF4F911D293BA700EC23D0 /* Utilities.swift in Sources */,
 				0BAF4F8F1D2935F500EC23D0 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BAF4F7A1D2933DA00EC23D0 /* Sources */ = {
+		0BAF4F941D2A9A5E00EC23D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BAF4F841D2933DA00EC23D0 /* WoodyTests.swift in Sources */,
+				0BAF4FA11D2A9AC600EC23D0 /* Protocols.swift in Sources */,
+				0BAF4FA21D2A9AC600EC23D0 /* Logger.swift in Sources */,
+				0BAF4FA31D2A9AC600EC23D0 /* Utilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAF4FB41D2A9DE900EC23D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAF4FBB1D2A9DEA00EC23D0 /* WoodyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0BAF4F811D2933DA00EC23D0 /* PBXTargetDependency */ = {
+		0BAF4FBF1D2A9DEA00EC23D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0BAF4F731D2933DA00EC23D0 /* Woody */;
-			targetProxy = 0BAF4F801D2933DA00EC23D0 /* PBXContainerItemProxy */;
+			target = 0BAF4F981D2A9A5E00EC23D0 /* Woody-macOS */;
+			targetProxy = 0BAF4FBE1D2A9DEA00EC23D0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -332,7 +392,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.Woody;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Woody;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -351,28 +411,78 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.Woody;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Woody;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		0BAF4F8C1D2933DA00EC23D0 /* Debug */ = {
+		0BAF4F9F1D2A9A5E00EC23D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = WoodyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.WoodyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Woody/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.Woody;
+				PRODUCT_NAME = Woody;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		0BAF4F8D1D2933DA00EC23D0 /* Release */ = {
+		0BAF4FA01D2A9A5E00EC23D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Woody/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.Woody;
+				PRODUCT_NAME = Woody;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0BAF4FC11D2A9DEA00EC23D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = WoodyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.WoodyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0BAF4FC21D2A9DEA00EC23D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = WoodyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codezerker.WoodyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -388,7 +498,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0BAF4F881D2933DA00EC23D0 /* Build configuration list for PBXNativeTarget "Woody" */ = {
+		0BAF4F881D2933DA00EC23D0 /* Build configuration list for PBXNativeTarget "Woody-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0BAF4F891D2933DA00EC23D0 /* Debug */,
@@ -396,11 +506,19 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		0BAF4F8B1D2933DA00EC23D0 /* Build configuration list for PBXNativeTarget "WoodyTests" */ = {
+		0BAF4F9E1D2A9A5E00EC23D0 /* Build configuration list for PBXNativeTarget "Woody-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BAF4F8C1D2933DA00EC23D0 /* Debug */,
-				0BAF4F8D1D2933DA00EC23D0 /* Release */,
+				0BAF4F9F1D2A9A5E00EC23D0 /* Debug */,
+				0BAF4FA01D2A9A5E00EC23D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0BAF4FC01D2A9DEA00EC23D0 /* Build configuration list for PBXNativeTarget "WoodyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BAF4FC11D2A9DEA00EC23D0 /* Debug */,
+				0BAF4FC21D2A9DEA00EC23D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

@@ -14,9 +14,9 @@ internal struct FileUtility {
   
   static func defaultLoggingDestination(createIntermediateDirectoriesIfNeeded createIfNeeded: Bool) -> NSURL? {
     let documentURL = try? fileManager.URLForDirectory(.DocumentDirectory,
-                                                  inDomain: .UserDomainMask,
-                                                  appropriateForURL: nil,
-                                                  create: createIfNeeded)
+                                                       inDomain: .UserDomainMask,
+                                                       appropriateForURL: nil,
+                                                       create: createIfNeeded)
     let loggingDir = documentURL?.URLByAppendingPathComponent(loggingDirName, isDirectory: true)
     let loggingFile = loggingDir?.URLByAppendingPathComponent(loggingFileName, isDirectory: false)
     
@@ -30,6 +30,7 @@ internal struct FileUtility {
         try fileManager.createDirectoryAtURL(dirURL,
                                              withIntermediateDirectories: true,
                                              attributes: nil)
+        try reset(file: fileURL)
       } catch {
         return nil
       }
@@ -37,12 +38,20 @@ internal struct FileUtility {
     
     return loggingFile
   }
+  
+  static func clearLog(fileURL: NSURL) {
+    _ = try? reset(file: fileURL)
+  }
 }
 
 private extension FileUtility {
   
   static let loggingDirName = "com.codezerker.Woody"
   static let loggingFileName = "log.txt"
+  
+  static func reset(file fileURL: NSURL) throws {
+    try NSData().writeToURL(fileURL, options: [])
+  }
 }
 
 private extension NSURL {

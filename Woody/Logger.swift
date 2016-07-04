@@ -9,20 +9,21 @@
 import Foundation
 
 public struct Logger {
- 
+  
   public struct Configuration {
     
-    public let destinationURL = FileUtility.defaultLoggingDestination(createIntermediateDirectoriesIfNeeded: true)
-    public let fileSizeLimit: Int? = 10 * 1024 * 1024
-    public let loggingQueue: dispatch_queue_t = dispatch_queue_create("com.codezerker.woody.logging", DISPATCH_QUEUE_SERIAL)
+    public var destinationURL = FileUtility.defaultLoggingDestination(createIntermediateDirectoriesIfNeeded: true)
+    public var fileSizeLimit: Int? = 10 * 1024 * 1024
+    public var loggingQueue: dispatch_queue_t = dispatch_queue_create("com.codezerker.woody.logging", DISPATCH_QUEUE_SERIAL)
+    public var timestampProvider: TimestampProvider? = DefaultTimestampProvider()
   }
   
-  private let configuration: Configuration
+  public let configuration: Configuration
   private let fileHandle: NSFileHandle
   
   public init?(configuration: Configuration) {
     guard let destinationURL = configuration.destinationURL,
-          let fileHandle = try? NSFileHandle(forWritingToURL: destinationURL) else {
+          let fileHandle = try? NSFileHandle(forUpdatingURL: destinationURL) else {
       return nil
     }
     
@@ -42,15 +43,37 @@ public struct Logger {
       self.fileHandle.synchronizeFile()
     }
   }
+  
+  public func clear() {
+    dispatch_async(configuration.loggingQueue) {
+      self.fileHandle.seekToFileOffset(0)
+      FileUtility.clearLog(self.configuration.destinationURL!)
+    }
+  }
+  
+  public func read(completion: String? -> Void) {
+    dispatch_async(configuration.loggingQueue) {
+      let fileHandle = try? NSFileHandle(forReadingFromURL: self.configuration.destinationURL!)
+      let data = fileHandle?.readDataToEndOfFile()
+      let string = String(data: data!, encoding: NSUTF8StringEncoding)
+      dispatch_async(dispatch_get_main_queue()) {
+        completion(string)
+      }
+    }
+  }
 }
 
 private extension Logger {
   
   var loggingPrefix: String {
-    return "[Woody] (\(NSDate())): "
+    if let timestamp = configuration.timestampProvider?.timestampForDate(NSDate()) {
+      return "===== [Woody] " + timestamp + " =====\n"
+    } else {
+      return "===== [Woody] =====\n"
+    }
   }
   
   var loggingSuffix: String {
-    return "\n"
+    return "\n\n"
   }
 }
