@@ -16,6 +16,10 @@ public struct Logger {
     public var fileSizeLimit: Int? = 10 * 1024 * 1024
     public var loggingQueue: dispatch_queue_t = dispatch_queue_create("com.codezerker.woody.logging", DISPATCH_QUEUE_SERIAL)
     public var timestampProvider: TimestampProvider? = DefaultTimestampProvider()
+    
+    public init() {
+      // ...
+    }
   }
   
   public let configuration: Configuration
