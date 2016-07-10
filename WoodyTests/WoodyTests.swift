@@ -40,7 +40,7 @@ class WoodyTests: XCTestCase {
     ]
     
     for example in examples {
-      logger?.log(example)
+      logger?.log(logable: example)
     }
     
     let expectation = expectationWithDescription("read")
@@ -64,9 +64,38 @@ class WoodyTests: XCTestCase {
     waitForExpectationsWithTimeout(5, handler: nil)
   }
   
+  func testLoggingItems() {
+    let examples: [Logable] = [
+      Example(value1: 1, value2: 2),
+      Example(value1: 3, value2: 4),
+      Example(value1: 5, value2: 6),
+    ]
+    
+    logger?.log(logables: examples)
+    let expectation = expectationWithDescription("read")
+    logger?.read { result in
+      let expectedLog =
+          "===== [Woody] <timestamp> =====" + "\n" +
+          "[1/3] Example -> value1 : 1" + "\n" +
+          "        -> value2 : 2" + "\n" +
+          "[2/3] Example -> value1 : 3" + "\n" +
+          "        -> value2 : 4" + "\n" +
+          "[3/3] Example -> value1 : 5" + "\n" +
+          "        -> value2 : 6" + "\n" +
+          "\n"
+      XCTAssertEqual(result, expectedLog)
+      expectation.fulfill()
+    }
+    waitForExpectationsWithTimeout(5, handler: nil)
+  }
+  
   func testClearAndLog() {
+    let noise = "Noise - Noise - Noise"
+    logger?.log(logable: noise)
+    logger?.clear()
+    
     let example = Example(value1: 555, value2: 999)
-    logger?.log(example)
+    logger?.log(logable: example)
     
     let expectation = expectationWithDescription("read")
     logger?.read { result in

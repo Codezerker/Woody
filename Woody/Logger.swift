@@ -35,16 +35,26 @@ public struct Logger {
     self.configuration = configuration
   }
   
-  public func log(logable: Logable) {
+  public func log(logable logable: Logable) {
     dispatch_async(configuration.loggingQueue) {
-      let logging = self.loggingPrefix + logable.loggingRepresentation + self.loggingSuffix
-      guard let loggingData = logging.dataUsingEncoding(NSUTF8StringEncoding) else {
-        return
+      let log = self.loggingPrefix + logable.loggingRepresentation + self.loggingSuffix
+      self.prepareToLog()
+      self.writeLogToFile(log)
+      self.finalizeLogging()
+    }
+  }
+  
+  public func log(logables logables: [Logable]) {
+    dispatch_async(configuration.loggingQueue) { 
+      self.prepareToLog()
+      self.writeLogToFile(self.loggingPrefix)
+      for (index, logable) in logables.enumerate() {
+        self.writeLogToFile(logables.itemLoggingPrefix(atIndex: index)
+          + logable.loggingRepresentation
+          + logables.itemLoggingSuffix)
       }
-      
-      self.fileHandle.seekToEndOfFile()
-      self.fileHandle.writeData(loggingData)
-      self.fileHandle.synchronizeFile()
+      self.writeLogToFile(logables.itemLoggingSuffix)
+      self.finalizeLogging()
     }
   }
   
@@ -78,5 +88,31 @@ private extension Logger {
   
   var loggingSuffix: String {
     return "\n\n"
+  }
+  
+  func prepareToLog() {
+    self.fileHandle.seekToEndOfFile()
+  }
+  
+  func writeLogToFile(logString: String) {
+    guard let logData = logString.dataUsingEncoding(NSUTF8StringEncoding) else {
+      return
+    }
+    fileHandle.writeData(logData)
+  }
+  
+  func finalizeLogging() {
+    self.fileHandle.synchronizeFile()
+  }
+}
+
+private extension Array {
+  
+  func itemLoggingPrefix(atIndex index: Int) -> String {
+    return "[\(index + 1)/\(count)] "
+  }
+  
+  var itemLoggingSuffix: String {
+    return "\n"
   }
 }
