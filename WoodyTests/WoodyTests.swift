@@ -43,7 +43,7 @@ class WoodyTests: XCTestCase {
       logger?.log(logable: example)
     }
     
-    let expectation = expectationWithDescription("read")
+    let testExpectation = expectation(description: "read")
     logger?.read { result in
       let expectedLog =
           "===== [Woody] <timestamp> =====" + "\n" +
@@ -59,9 +59,9 @@ class WoodyTests: XCTestCase {
           "        -> value2 : 6" + "\n" +
           "\n"
       XCTAssertEqual(result, expectedLog)
-      expectation.fulfill()
+      testExpectation.fulfill()
     }
-    waitForExpectationsWithTimeout(5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
   }
   
   func testLoggingItems() {
@@ -72,7 +72,7 @@ class WoodyTests: XCTestCase {
     ]
     
     logger?.log(logables: examples)
-    let expectation = expectationWithDescription("read")
+    let testExpectation = expectation(description: "read")
     logger?.read { result in
       let expectedLog =
           "===== [Woody] <timestamp> =====" + "\n" +
@@ -84,9 +84,9 @@ class WoodyTests: XCTestCase {
           "        -> value2 : 6" + "\n" +
           "\n"
       XCTAssertEqual(result, expectedLog)
-      expectation.fulfill()
+      testExpectation.fulfill()
     }
-    waitForExpectationsWithTimeout(5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
   }
   
   func testClearAndLog() {
@@ -97,7 +97,7 @@ class WoodyTests: XCTestCase {
     let example = Example(value1: 555, value2: 999)
     logger?.log(logable: example)
     
-    let expectation = expectationWithDescription("read")
+    let testExpectation = expectation(description: "read")
     logger?.read { result in
       let expectedLog =
           "===== [Woody] <timestamp> =====" + "\n" +
@@ -105,9 +105,9 @@ class WoodyTests: XCTestCase {
           "        -> value2 : 999" + "\n" +
           "\n"
       XCTAssertEqual(result, expectedLog)
-      expectation.fulfill()
+      testExpectation.fulfill()
     }
-    waitForExpectationsWithTimeout(5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
   }
 }
 
