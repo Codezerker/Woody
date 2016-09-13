@@ -14,7 +14,7 @@ public struct Logger {
     
     public var destinationURL = FileUtility.defaultLoggingDestination(createIntermediateDirectoriesIfNeeded: true)
     public var fileSizeLimit: Int? = 10 * 1024 * 1024
-    public var loggingQueue: dispatch_queue_t = dispatch_queue_create("com.codezerker.woody.logging", DISPATCH_QUEUE_SERIAL)
+    public var loggingQueue = DispatchQueue(label: "com.codezerker.woody.logging")
     public var timestampProvider: TimestampProvider? = DefaultTimestampProvider()
     
     public init() {
@@ -23,11 +23,11 @@ public struct Logger {
   }
   
   public let configuration: Configuration
-  private let fileHandle: NSFileHandle
+  fileprivate let fileHandle: FileHandle
   
   public init?(configuration: Configuration) {
     guard let destinationURL = configuration.destinationURL,
-          let fileHandle = try? NSFileHandle(forUpdatingURL: destinationURL) else {
+          let fileHandle = try? FileHandle(forUpdating: destinationURL as URL) else {
       return nil
     }
     
@@ -35,41 +35,41 @@ public struct Logger {
     self.configuration = configuration
   }
   
-  public func log(logable logable: Logable) {
-    dispatch_async(configuration.loggingQueue) {
+  public func log(logable: Logable) {
+    configuration.loggingQueue.async {
       let log = self.loggingPrefix + logable.loggingRepresentation + self.loggingSuffix
       self.prepareToLog()
-      self.writeLogToFile(log)
+      self.writeLogToFile(logString: log)
       self.finalizeLogging()
     }
   }
   
-  public func log(logables logables: [Logable]) {
-    dispatch_async(configuration.loggingQueue) { 
+  public func log(logables: [Logable]) {
+    configuration.loggingQueue.async {
       self.prepareToLog()
-      self.writeLogToFile(self.loggingPrefix)
-      for (index, logable) in logables.enumerate() {
-        self.writeLogToFile(logables.itemLoggingPrefix(atIndex: index)
+      self.writeLogToFile(logString: self.loggingPrefix)
+      for (index, logable) in logables.enumerated() {
+        self.writeLogToFile(logString: logables.itemLoggingPrefix(atIndex: index)
           + logable.loggingRepresentation
           + logables.itemLoggingSuffix)
       }
-      self.writeLogToFile(logables.itemLoggingSuffix)
+      self.writeLogToFile(logString: logables.itemLoggingSuffix)
       self.finalizeLogging()
     }
   }
   
   public func clear() {
-    dispatch_async(configuration.loggingQueue) {
-      FileUtility.clearLog(self.configuration.destinationURL!)
+    configuration.loggingQueue.async {
+      FileUtility.clearLog(fileURL: self.configuration.destinationURL!)
     }
   }
   
-  public func read(completion: String? -> Void) {
-    dispatch_async(configuration.loggingQueue) {
-      let fileHandle = try? NSFileHandle(forReadingFromURL: self.configuration.destinationURL!)
+  public func read(completion: @escaping (String?) -> Void) {
+    configuration.loggingQueue.async {
+      let fileHandle = try? FileHandle(forReadingFrom: self.configuration.destinationURL! as URL)
       let data = fileHandle?.readDataToEndOfFile()
-      let string = String(data: data!, encoding: NSUTF8StringEncoding)
-      dispatch_async(dispatch_get_main_queue()) {
+      let string = String(data: data!, encoding: String.Encoding.utf8)
+      DispatchQueue.main.async {
         completion(string)
       }
     }
@@ -79,7 +79,7 @@ public struct Logger {
 private extension Logger {
   
   var loggingPrefix: String {
-    if let timestamp = configuration.timestampProvider?.timestampForDate(NSDate()) {
+    if let timestamp = configuration.timestampProvider?.timestampForDate(date: NSDate()) {
       return "===== [Woody] " + timestamp + " =====\n"
     } else {
       return "===== [Woody] =====\n"
@@ -95,10 +95,10 @@ private extension Logger {
   }
   
   func writeLogToFile(logString: String) {
-    guard let logData = logString.dataUsingEncoding(NSUTF8StringEncoding) else {
+    guard let logData = logString.data(using: String.Encoding.utf8) else {
       return
     }
-    fileHandle.writeData(logData)
+    fileHandle.write(logData)
   }
   
   func finalizeLogging() {

@@ -10,15 +10,15 @@ import Foundation
 
 internal struct FileUtility {
   
-  private static let fileManager = NSFileManager.defaultManager()
+  private static let fileManager = FileManager.default
   
   static func defaultLoggingDestination(createIntermediateDirectoriesIfNeeded createIfNeeded: Bool) -> NSURL? {
-    let documentURL = try? fileManager.URLForDirectory(.DocumentDirectory,
-                                                       inDomain: .UserDomainMask,
-                                                       appropriateForURL: nil,
-                                                       create: createIfNeeded)
-    let loggingDir = documentURL?.URLByAppendingPathComponent(loggingDirName, isDirectory: true)
-    let loggingFile = loggingDir?.URLByAppendingPathComponent(loggingFileName, isDirectory: false)
+    let documentURL = try? fileManager.url(for: .documentDirectory,
+                                           in: .userDomainMask,
+                                           appropriateFor: nil,
+                                           create: createIfNeeded) as NSURL
+    let loggingDir = documentURL?.appendingPathComponent(loggingDirName, isDirectory: true)
+    let loggingFile = loggingDir?.appendingPathComponent(loggingFileName, isDirectory: false)
     
     guard let dirURL = loggingDir,
           let fileURL = loggingFile else {
@@ -27,16 +27,16 @@ internal struct FileUtility {
     
     if createIfNeeded && !fileURL.isWritable {
       do {
-        try fileManager.createDirectoryAtURL(dirURL,
+        try fileManager.createDirectory(at: dirURL,
                                              withIntermediateDirectories: true,
                                              attributes: nil)
-        try reset(file: fileURL)
+        try reset(file: fileURL as NSURL)
       } catch {
         return nil
       }
     }
     
-    return loggingFile
+    return loggingFile as NSURL?
   }
   
   static func clearLog(fileURL: NSURL) {
@@ -50,20 +50,17 @@ private extension FileUtility {
   static let loggingFileName = "log.txt"
   
   static func reset(file fileURL: NSURL) throws {
-    try NSData().writeToURL(fileURL, options: [])
+    try NSData().write(to: fileURL as URL, options: [])
   }
 }
 
-private extension NSURL {
+private extension URL {
   
   var isWritable: Bool {
-    var writable: AnyObject?
-    _ = try? getResourceValue(&writable, forKey: NSURLIsWritableKey)
-    
-    guard let number = (writable as? NSNumber)?.boolValue else {
+    do {
+      return try resourceValues(forKeys: [.isWritableKey]).isWritable ?? false
+    } catch {
       return false
     }
-    
-    return number.boolValue
   }
 }
