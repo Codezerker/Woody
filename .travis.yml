@@ -1,4 +1,4 @@
 language: objective-c
-osx_image: xcode8.0
+osx_image: xcode8
 script:
   xctool test -project Woody.xcodeproj -scheme WoodyTests
